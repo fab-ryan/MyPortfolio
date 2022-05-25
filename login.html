@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="icon" type="image/png" href="images/mine_logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ======= Main container Start =========-->
+    <div class="main-container">
+      <!-- ========Hero start -->
+      <div class="hero">
+        <div class="logo">
+          <a href="#">
+            <img src="images/mine_logo.png" class="logo" />
+          </a>
+        </div>
+        <div class="nav-toggler" id="nav-toggle">
+          <span></span>
+        </div>
+        <div id="nav-menu" class="nav-bar">
+          <div class="nav__close" id="nav-close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+          <ul class="nav">
+            <li><a href="./index.html" class="nav-item">Home</a></li>
+            <li><a href="about.html" class="nav-item">About</a></li>
+            <li>
+              <a href="portfolio.html" class="nav-item">Portfolio</a>
+            </li>
+            <li><a href="contact.html" class="nav-item">Contact</a></li>
+            <li id="login-btn">
+              <a href="login.html" class="tap-login active-login">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- ========Hero End -->
+    <!-- =====Main Content Start -->
+    <div class="main-content" id="main">
+      <section class="login">
+        <div class="">
+          <form class="login-form shadow-dark padd-15">
+            <h3 class="login-title">Login</h3>
+            <p class="heading-input">Email</p>
+            <div class="form-group">
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Enter email"
+              />
+            </div>
+
+            <p class="heading-input">Password</p>
+            <div class="form-group">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Enter password"
+              />
+            </div>
+            <div class="boxes">
+              <div class="ticking padd-15">
+                <p><input type="checkbox" /></p>
+                <p class="infront-word">Remember Me</p>
+              </div>
+              <div class="ticking padd-15">
+                <p><input type="checkbox" /></p>
+                <p class="infront-word">Forget the password</p>
+              </div>
+            </div>
+            <button type="submit" class="log padd-15">Login</button>
+            <p class="signup-option padd-15">
+              Don't have an account? <a href="./signup.html">Sign up</a>
+            </p>
+          </form>
+        </div>
+      </section>
+      <section class="footer">
+        <div class="footer-container">
+          <div class="footer-links">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact Me</a></li>
+              <li><a href="#">Portfolio</a></li>
+            </ul>
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-at">
+            <div>Designed By Fabrice</div>
+            <div>Reserved &copy; 2022</div>
+            <div class="footer-icons">
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-github"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
