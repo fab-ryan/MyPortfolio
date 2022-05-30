@@ -38,8 +38,20 @@
             </li>
             <li><a href="contact.html" class="nav-item">Contact</a></li>
             <li id="login-btn">
-              <a href="login.html" class="tap-login active-login">Login</a>
+              <a href="login.html" class="tap-login" class="nav-item" id="login"
+                >Login</a
+              >
+              <a href="#" class="tap-logout" class="nav-item" id="logout"
+                >Logout</a
+              >
+              
             </li>
+            <div class="dropdown" id="dropdown_card">
+              <ul>
+                <a href="./dashboard/index.html"><li>Dashboard</li></a>
+                <a id="logout_dash"><li>Logout</li></a>
+              </ul>
+            </div>
           </ul>
         </div>
       </div>
@@ -68,6 +80,7 @@
                 name="password"
                 class="form-control"
                 placeholder="Enter password"
+                autocomplete="true"
               />
             </div>
             <div class="boxes">
@@ -121,6 +134,56 @@
         </div>
       </section>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
     <script src="./js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      const form = document.querySelector(".login-form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (
+          form.email.value == "" ||
+          form.email.value == null ||
+          form.password.value == "" ||
+          form.password.value == null
+        ) {
+          form.email.focus();
+          form.password.focus();
+          swal("Error", "PLease Fill all feild", "error");
+          return false;
+        }
+        var emailID = form.email.value;
+        atpos = emailID.indexOf("@");
+        dotpos = emailID.lastIndexOf(".");
+
+        if (atpos < 1 || dotpos - atpos < 2) {
+          form.email.focus();
+          swal("Error", `Incorect format  of Email use @ and .`, "error");
+          return false;
+        }
+        app
+          .auth()
+          .signInWithEmailAndPassword(form.email.value, form.password.value)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            swal("Welcom", "Login Successfull Admin", "success").then(() => {
+              form.email.value = "";
+              form.password.value = "";
+              location.href = "./dashboard/";
+            });
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            swal("Error", errorMessage, "error");
+          });
+      });
+    </script>
   </body>
 </html>

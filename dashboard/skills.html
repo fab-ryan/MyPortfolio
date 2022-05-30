@@ -41,17 +41,23 @@
       </ul>
     </div>
   </section>
-  <section class="main-content">
+  <section class="main-content" id="main-p">
     <header class="navbar">
       <div class="navbar-item">
         <div id="toggle">
           <i class="fa fa-bars"></i>
         </div>
-        <div class="nav-user">
+        <div class="nav-user" id="drop">
           <span>N</span><i class="fa fa-caret-down"></i>
         </div>
       </div>
     </header>
+    <div class="dropdown" id="dropdown_card">
+      <ul>
+        <a href="../portfolio.html"><li>Portfolio</li></a>
+        <a id="logout_dash"><li>Logout</li></a>
+      </ul>
+    </div>
     <main>
       <div class="main-portfolio">
         <span>List of Skills</span>
@@ -63,21 +69,12 @@
               <th>Title</th>
               <th>Abbrivation</th>
               <th>Percentege</th>
+              <th>Date</th>
+              <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Hello</td>
-              <td>Hello</td>
-              <td>Hello</td>
-              <td>Hello</td>
-            </tr>
-            <tr>
-              <td>Hello</td>
-              <td>Hello</td>
-              <td>Hello</td>
-              <td>Hello</td>
-            </tr>
+          <tbody id="Skills">
+
           </tbody>
         </table>
       </div>
@@ -92,37 +89,156 @@
       </div>
       <h2>Add New Skills</h2>
       <div class="row-s">
-          <form action="">
-              <div class="form-control-f">
-                  <label for="">Title:</label>
-                  <div>
+        <form action="" id="skills-form">
+          <div class="form-control-f">
+            <label for="">Title:</label>
 
-                      <input type="text" aria-valuetext="true" placeholder="Title">
-                  </div>
-              </div>
-              <div class="form-control-f">
-                  <label for="">Abbrivation:</label>
-                  <div>
+            <div>
 
-                      <input type="text" aria-valuetext="true" placeholder="Abbrivation">
-                  </div>
-              </div>
-              <div class="form-control-f">
-                  <label for="">Percent:</label>
-                  <div>
+              <input type="text" aria-valuetext="true" placeholder="Title" id="title">
+            </div>
+          </div>
+          <div class="form-control-f">
+            <label for="">Abbrivation:</label>
+            <div>
 
-                      <input type="link" aria-valuetext="true" placeholder="Percentege">
-                  </div>
-              </div>
-              
-              <div class="form-control-f">
-                  <button class="btn" type="submit">Add Skill</button>
-              </div>
-          </form>
+              <input type="text" aria-valuetext="true" placeholder="Abbrivation" id="abbrivation">
+            </div>
+          </div>
+          <div class="form-control-f">
+            <label for="">Percent:</label>
+            <div>
+
+              <input type="link" aria-valuetext="true" placeholder="Percentege" id="percentage">
+            </div>
+          </div>
+
+          <div class="form-control-f">
+            <button class="btn" type="submit">Add Skill</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="./js/app.js"></script>
+  <script>
+    const db = app.firestore();
+    const AddSkills = document.querySelector("#skills-form");
+    AddSkills.addEventListener("submit", (e) => {
+      e.preventDefault();
+      var title = AddSkills.title.value;
+      var abbrivation = AddSkills.abbrivation.value;
+      var percentage = AddSkills.percentage.value;
+      if (
+        AddSkills.title.value == "" ||
+        AddSkills.percentage.value == "" ||
+        AddSkills.abbrivation.value == ""
+      ) {
+        AddSkills.title.focus();
+        AddSkills.percentage.focus();
+        AddSkills.abbrivation.focus();
+        swal("Error", "Please Fill all feild", "error");
+        return false;
+      }
+
+      db.collection("skills")
+        .add({
+          title: AddSkills.title.value,
+          abbrivation: AddSkills.abbrivation.value,
+          percentage: AddSkills.percentage.value,
+          date: new Date(),
+        })
+        .then((docRef) => {
+          swal(
+            "Thank You",
+            "Your Portfolio Has been Created",
+            "success"
+          ).then(() => {
+            AddSkills.title.value = "";
+            AddSkills.abbrivation.value = "";
+            AddSkills.percentage.value = "";
+            location.reload();
+          });
+        })
+        .catch((error) => {
+          swal("error ", docRef.name + "error", "error");
+        });
+    })
+    var rowsNum = 0;
+
+    db.collection("skills")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+          const datas = doc.data();
+
+          const title = datas.title;
+          const percentage = datas.percentage;
+          const abbrivation = datas.abbrivation;
+          const date = datas.date;
+
+
+          const DataId = doc.id;
+          ShowSkills(title, percentage, date, abbrivation, DataId);
+
+        });
+      });
+    function ShowSkills(title, percentage, date, abbrivation, DataId) {
+      const SkillsTr = document.querySelector('#Skills');
+      var tr = document.createElement('tr');
+      var tdNow = document.createElement('td');
+      var tdTitle = document.createElement('td');
+      var tdPercentage = document.createElement('td');
+      var tdAbbrivation = document.createElement('td');
+      var tdAction = document.createElement('td');
+      var tdDate = document.createElement('td');
+      rowsNum += 1;
+      tdNow.innerHTML = rowsNum;
+      tdTitle.innerHTML = title;
+      tdPercentage.innerHTML = percentage + "%";
+      tdAbbrivation.innerHTML = abbrivation;
+      tdDate.innerHTML = date.toDate().toDateString();
+      tdAction.innerHTML = `<a><i class="fa fa-trash" onclick=Delete(this.id) id="${DataId}"></i> </a> `;
+      tr.appendChild(tdNow);
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdAbbrivation);
+      tr.appendChild(tdPercentage);
+      tr.appendChild(tdDate);
+      tr.appendChild(tdAction);
+      SkillsTr.appendChild(tr);
+      const deleteForm = document.getElementById("delete");
+
+    }
+    function Delete(DataId) {
+      swal({
+        title: "Attention",
+        text: "Are you sure!! You want to Delete",
+        icon: "warning",
+        buttons: true,
+
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          db.collection("skills").doc(DataId).delete().then(() => {
+            swal('successfuly', 'You have Delete ', 'success').then(() => {
+              location.reload();
+            });
+          }).catch((error) => {
+            console.error("Error removing document: ", error);
+          });
+        }
+
+
+      })
+    }
+    
+  </script>
 </body>
 
 </html>
