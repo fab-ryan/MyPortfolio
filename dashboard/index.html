@@ -1,89 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="icon" type="image/png" href="../images/mine_logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
-  <link rel="icon" type="image/png" href="../images/mine_logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
-
-<body>
-  <section class="sidebar">
-    <div class="logo">
-      <img src="../images/mine_logo.png" alt="" />
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <a href="index.html" >
-        <li class="active">
-            <i class="fa fa-dashboard"></i><span>Dashboard</span>
-          </li>
-        </a>
-        <a href="contact.html">
-          <li>
-            <i class="fa fa-book "></i><span>Contact</span>
-          </li>
-        </a>
-        <a href="portfolio.html">
-        <li>
-            <i class="fa fa-briefcase"></i><span>Portfolio</span>
-          </li>
-        </a>
-        <a href="skills.html">
-        <li>
-            <i class="fa fa-shirtsinbulk"></i><span>Skills</span>
-          </li>
-        </a>
-      </ul>
-    </div>
-  </section>
-  <section class="main-content">
-    <header class="navbar">
-      <div class="navbar-item">
-        <div id="toggle">
-          <i class="fa fa-bars"></i>
-        </div>
-        <div class="nav-user">
-          <span>N</span><i class="fa fa-caret-down"></i>
-        </div>
+  <body>
+    <section class="sidebar">
+      <div class="logo">
+        <img src="../images/mine_logo.png" alt="" />
       </div>
-    </header>
-    <main>
-      <div class="main-home">
-        <div class="card">
-          <div class="card-title">Contact <i class="fa fa-book"></i></div>
-          <span>30</span>
-        </div>
-        <div class="card">
-          <div class="card-title">Portfolio <i class="fa fa-briefcase"></i></div>
-          <span>20</span>
-        </div>
-        <div class="card">
-          <div class="card-title">
-            User <i class="fa fa-user"></i>
-          </div>
-          <span>1</span>
-        </div>
-        <div class="card">
-          <div class="card-title">
-            Skills <i class="fa fa-shirtsinbulk"></i>
-          </div>
-          <span>5</span>
-        </div>
-        <div class="card">
-          <div class="card-title">
-            Last Login <i class="fa fa-unlock"></i>
-          </div>
-          <span>1 min ago</span>
-        </div>
+      <div class="sidebar-menu">
+        <ul>
+          <a href="index.html">
+            <li class="active">
+              <i class="fa fa-dashboard"></i><span>Dashboard</span>
+            </li>
+          </a>
+          <a href="contact.html">
+            <li><i class="fa fa-book"></i><span>Contact</span></li>
+          </a>
+          <a href="portfolio.html">
+            <li><i class="fa fa-briefcase"></i><span>Portfolio</span></li>
+          </a>
+          <a href="skills.html">
+            <li><i class="fa fa-shirtsinbulk"></i><span>Skills</span></li>
+          </a>
+        </ul>
       </div>
-    </main>
-  </section>
-  <script src="./js/app.js"></script>
-</body>
+    </section>
+    <section class="main-content">
+      <header class="navbar">
+        <div class="navbar-item">
+          <div id="toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+          <div class="nav-user" id="drop">
+            <span>N</span><i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+      </header>
+      <div class="dropdown" id="dropdown_card">
+        <ul>
+          <a href="../portfolio.html"><li>Portfolio</li></a>
+          <a id="logout_dash"><li>Logout</li></a>
+        </ul>
+      </div>
+      <main>
+        <div class="main-home">
+          <div class="card">
+            <div class="card-title">Contact <i class="fa fa-book"></i></div>
+            <span>30</span>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              Portfolio <i class="fa fa-briefcase"></i>
+            </div>
+            <span>20</span>
+          </div>
+          <div class="card">
+            <div class="card-title">User <i class="fa fa-user"></i></div>
+            <span>1</span>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              Skills <i class="fa fa-shirtsinbulk"></i>
+            </div>
+            <span>5</span>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              Last Login <i class="fa fa-unlock"></i>
+            </div>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </main>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      var rowsNum = 0;
+      const firebaseConfig = {
+        apiKey: "AIzaSyDeyrDywWMBo75D3LUsrTLstkuyeTrMNpE",
+        authDomain: "myportfolio-90895.firebaseapp.com",
+        databaseURL: "https://myportfolio-90895-default-rtdb.firebaseio.com",
+        projectId: "myportfolio-90895",
+        storageBucket: "myportfolio-90895.appspot.com",
+        messagingSenderId: "1006837952433",
+        appId: "1:1006837952433:web:d2efb1206e7c46df821790",
+      };
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      let shows = false;
+      const drop = document.getElementById("drop");
+      const dropdown_card = document.getElementById("dropdown_card");
 
+      drop.addEventListener("click", (e) => {
+        shows = !shows;
+        if (shows == true) {
+          dropdown_card.style.display = "block";
+        } else {
+          dropdown_card.style.display = "none";
+        }
+      });
+      const logoutElement = document.getElementById("logout_dash");
+      logoutElement.addEventListener("click", (e) => {
+        e.preventDefault;
+        swal({
+          title: "Log out",
+          text: "Are you sure?",
+          icon: "warning",
+          buttons: true,
+
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            app
+              .auth()
+              .signOut()
+              .then(() => {
+                location.href = "../index.html";
+              })
+              .catch((error) => {
+                location.reload();
+              });
+          }
+        });
+      });
+      app.auth().onAuthStateChanged((user) => {
+        if (user == null) {
+          history.back();
+        }
+      });
+    </script>
+  </body>
 </html>

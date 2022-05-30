@@ -1,132 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="icon" type="image/png" href="../images/mine_logo.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <section class="sidebar">
-        <div class="logo">
-            <img src="../images/mine_logo.png" alt="" />
-        </div>
-        <div class="sidebar-menu">
-            <ul>
-                <a href="index.html">
-                    <li class="">
-                        <i class="fa fa-dashboard"></i><span>Dashboard</span>
-                    </li>
-                </a>
-                <a href="contact.html">
-                    <li>
-                        <i class="fa fa-book"></i><span>Contact</span>
-                    </li>
-                </a>
-                <a href="portfolio.html">
-                    <li class="active">
-                        <i class="fa fa-briefcase"></i><span>Portfolio</span>
-                    </li>
-                </a>
-                <a href="skills.html">
-                    <li>
-                        <i class="fa fa-shirtsinbulk"></i><span>Skills</span>
-                    </li>
-                </a>
-            </ul>
-        </div>
+      <div class="logo">
+        <img src="../images/mine_logo.png" alt="" />
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <a href="index.html">
+            <li class="">
+              <i class="fa fa-dashboard"></i><span>Dashboard</span>
+            </li>
+          </a>
+          <a href="contact.html">
+            <li><i class="fa fa-book"></i><span>Contact</span></li>
+          </a>
+          <a href="portfolio.html">
+            <li class="active">
+              <i class="fa fa-briefcase"></i><span>Portfolio</span>
+            </li>
+          </a>
+          <a href="skills.html">
+            <li><i class="fa fa-shirtsinbulk"></i><span>Skills</span></li>
+          </a>
+        </ul>
+      </div>
     </section>
     <section class="main-content" id="main-p">
-        <header class="navbar">
-            <div class="navbar-item">
-                <div id="toggle">
-                    <i class="fa fa-bars"></i>
-                </div>
-                <div class="nav-user">
-                    <span>N</span><i class="fa fa-caret-down"></i>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="main-portfolio">
-                <span>List of Portfolio</span>
-                <button class="btn btn-add" id="add-card">Add Portfolio</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Title</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                            <th>Web Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                        </tr>
-                        <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+      <header class="navbar">
+        <div class="navbar-item">
+          <div id="toggle">
+            <i class="fa fa-bars"></i>
+          </div>
+          <div class="nav-user" id="drop">
+            <span>N</span><i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+      </header>
+      <div class="dropdown" id="dropdown_card" >
+        <ul>
+          <a href="../portfolio.html"><li>Portfolio</li></a>
+          <a id="logout_dash"><li>Logout</li></a>
+        </ul>
+      </div>
+      <main>
+        <div class="main-portfolio">
+          <span>List of Portfolio</span>
+          <button class="btn btn-add" id="add-card">Add Portfolio</button>
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Web Link</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio"></tbody>
+          </table>
+        </div>
+      </main>
     </section>
     <section class="section-porfolio">
-        <div class="add-portfolio" id="show-portfolio">
-
-            <div class="nav__close" id="close-card">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-            <h2>Add New Portfolio</h2>
-            <div class="row">
-                <form action="">
-                    <div class="form-control-f">
-                        <label for="">Title:</label>
-                        <div>
-
-                            <input type="text" aria-valuetext="true" placeholder="Title">
-                        </div>
-                    </div>
-                    <div class="form-control-f">
-                        <label for="">Image:</label>
-                        <div>
-
-                            <input type="file" aria-valuetext="true" placeholder="Image">
-                        </div>
-                    </div>
-                    <div class="form-control-f">
-                        <label for="">Link:</label>
-                        <div>
-
-                            <input type="link" aria-valuetext="true" placeholder="Title">
-                        </div>
-                    </div>
-                    <div class="form-control-f">
-                        <label for="">Description</label>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-control-f">
-                        <button class="btn" type="submit">Add Portfolio</button>
-                    </div>
-                </form>
-            </div>
+      <div class="add-portfolio" id="show-portfolio">
+        <div class="nav__close" id="close-card">
+          <i class="fa fa-times" aria-hidden="true"></i>
         </div>
-
+        <h2>Add New Portfolio</h2>
+        <div class="row">
+          <form action="" id="portfolio-form">
+            <div class="form-control-f">
+              <label for="">Title:</label>
+              <div>
+                <input
+                  type="text"
+                  aria-valuetext="true"
+                  placeholder="Title"
+                  id="title"
+                />
+              </div>
+            </div>
+            <div class="form-control-f">
+              <label for="">Image:</label>
+              <div>
+                <input
+                  type="file"
+                  aria-valuetext="true"
+                  placeholder="Image"
+                  id="image"
+                />
+              </div>
+            </div>
+            <div class="form-control-f">
+              <label for="">Link:</label>
+              <div>
+                <input
+                  type="link"
+                  aria-valuetext="true"
+                  placeholder="Links"
+                  id="link"
+                />
+              </div>
+            </div>
+            <div class="form-control-f">
+              <label for="">Description</label>
+              <textarea name="" id="description" cols="30" rows="10">
+              </textarea>
+            </div>
+            <div class="form-control-f">
+              <button class="btn" type="submit">Add Portfolio</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/app.js"></script>
-</body>
+    <script>
+      const AddPortfolio = document.querySelector("#portfolio-form");
+      AddPortfolio.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var title = AddPortfolio.title.value;
+        var img = AddPortfolio.image.files[0];
+        var description = AddPortfolio.description.value;
+        var link = AddPortfolio.link.value;
+        if (
+          AddPortfolio.title.value == "" ||
+          AddPortfolio.title.value == null ||
+          AddPortfolio.image.value == "" ||
+          AddPortfolio.description.value == null ||
+          AddPortfolio.link.value == ""
+        ) {
+          AddPortfolio.title.focus();
+          AddPortfolio.image.focus();
+          AddPortfolio.link.focus();
+          AddPortfolio.description.focus();
+          swal("Error", "PLease Fill all feild", "error");
+          return false;
+        }
+        const ImageName = img.name;
+        var storageRef = app.storage().ref("portfloi_Image/" + ImageName);
+        var uploadTask = storageRef.put(img);
+        uploadTask.on(
+          "state_changed",
+          function (snapshot) {
+            var progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            swal("Please Waite Image is Beng Uploaded", {
+              content: progress,
+              timer: progress,
+            });
+            console.log("upload is " + progress + " done");
+          },
+          function (error) {
+            swal("error", "Error in Uploding picture", "error");
+          },
+          function () {
+            uploadTask.snapshot.ref
+              .getDownloadURL()
+              .then(function (downloadURL) {
+                const db = app.firestore();
+                db.collection("portfolio")
+                  .add({
+                    title: title,
+                    imageURL: downloadURL,
+                    link: link,
+                    description: description,
+                    date: new Date(),
+                  })
+                  .then((docRef) => {
+                    swal(
+                      "Thank You",
+                      "Your Portfolio Has been Created",
+                      "success"
+                    ).then(() => {
+                      AddPortfolio.title.value = "";
+                      AddPortfolio.img.value = "";
+                      AddPortfolio.description.value = "";
+                      AddPortfolio.link.value = "";
+                    });
+                  })
+                  .catch((error) => {
+                    swal("error ", docRef.name + "error", "error");
+                  });
+              });
+          }
+        );
+      });
 
+      var rowsNum = 0;
+
+      app
+        .firestore()
+        .collection("portfolio")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const datas = doc.data();
+
+            const title = datas.title;
+            const image = datas.imageURL;
+            const description = datas.description;
+            const link = datas.link;
+            const date = datas.date;
+
+            const DataId = doc.id;
+            ShowPortfolio(title, image, date, link, description, DataId);
+          });
+        });
+      function ShowPortfolio(title, image, date, link, description, DataId) {
+        const PortfolioTr = document.querySelector("#portfolio");
+        var tr = document.createElement("tr");
+        var tdNum = document.createElement("td");
+        var tdImage = document.createElement("td");
+        var tdTitle = document.createElement("td");
+        var tdDescrition = document.createElement("td");
+        var tdLink = document.createElement("td");
+        var tdDate = document.createElement("td");
+        var tdAction = document.createElement("td");
+        var ImgTd = document.createElement("img");
+        ImgTd.setAttribute("src", image);
+        ImgTd.style.width = "40px";
+        ImgTd.style.height = "40px";
+
+        rowsNum += 1;
+        tdNum.innerHTML = rowsNum;
+        tdTitle.innerHTML = title;
+        tdDescrition.innerHTML = description;
+        tdDate.innerHTML = date.toDate().toDateString();
+        tdImage.appendChild(ImgTd);
+        tdLink.innerHTML = `<a href="${link}">${title}</a>`;
+
+        tdAction.innerHTML = `<a><i class="fa fa-trash" onclick=Delete(this.id) id="${DataId}"></i> </a>`;
+        tdAction.style.width = "17%";
+        tr.appendChild(tdNum);
+        tr.appendChild(tdImage);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdDescrition);
+        tr.appendChild(tdLink);
+        tr.appendChild(tdDate);
+        tr.appendChild(tdAction);
+        PortfolioTr.appendChild(tr);
+      }
+
+      function Delete(DataId) {
+        swal({
+          title: "Attention",
+          text: "Are you sure!! You want to Delete",
+          icon: "warning",
+          buttons: true,
+
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            app
+              .firestore()
+              .collection("portfolio")
+              .doc(DataId)
+              .delete()
+              .then(() => {
+                swal("successfuly", "You have Delete ", "success").then(() => {
+                  location.reload();
+                });
+              })
+              .catch((error) => {
+                console.error("Error removing document: ", error);
+              });
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

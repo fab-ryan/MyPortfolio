@@ -153,6 +153,35 @@ ul {
   margin-left: 1rem;
   cursor: pointer;
 }
+/* Drop dwon button */
+.dropdown{
+  float: right;
+  height: 120px;
+  z-index: 120;
+  position: absolute;
+  right: 0;
+  box-shadow: -9px -9px 9px var(--black-900);
+  margin-right: 20px;
+  background-color: var(--black-700);
+  border-radius: 9px;
+  color: var(--skin-color);
+  width: 100px;
+  display: none;
+}
+.dropdown ul{
+  text-align: center;
+}
+.dropdown ul a{
+  cursor: pointer;
+  padding: 1px;
+ color: var(--skin-color);
+}
+.dropdown ul a li:hover{
+  background-color: var(--skin-color);
+  color: var(--white);
+  border-radius: 9px;
+}
+
 main {
   margin-top: 40px;
   margin-left: 80px;
@@ -373,4 +402,14 @@ textarea{
   padding-left: 5rem;
   padding-right: 5rem;
   flex-direction: column;
+}
+i.fa{
+  cursor: pointer;
+}
+i.fa:hover{
+  color:#ffa500
+}
+i.fa.fa-trash{
+  color: red;
+  margin-left: 29px;
 }
