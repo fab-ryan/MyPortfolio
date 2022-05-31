@@ -149,7 +149,9 @@
           dangerMode: true,
         }).then((willDelete) => {
           if (willDelete) {
-            db.collection("contact")
+            app
+              .firestore()
+              .collection("contact")
               .doc(DataId)
               .delete()
               .then(() => {
@@ -166,44 +168,44 @@
       let shows = false;
       const drop = document.getElementById("drop");
       const dropdown_card = document.getElementById("dropdown_card");
-    
+
       drop.addEventListener("click", (e) => {
         shows = !shows;
         if (shows == true) {
-        dropdown_card.style.display = "block";
-      } else {
-        dropdown_card.style.display = "none";
-      }
+          dropdown_card.style.display = "block";
+        } else {
+          dropdown_card.style.display = "none";
+        }
       });
       const logoutElement = document.getElementById("logout_dash");
-logoutElement.addEventListener("click", (e) => {
-  e.preventDefault;
-  swal({
-    title: "Log out",
-    text: "Are you sure?",
-    icon: "warning",
-    buttons: true,
+      logoutElement.addEventListener("click", (e) => {
+        e.preventDefault;
+        swal({
+          title: "Log out",
+          text: "Are you sure?",
+          icon: "warning",
+          buttons: true,
 
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      app
-        .auth()
-        .signOut()
-        .then(() => {
-          location.href = "../index.html";
-        })
-        .catch((error) => {
-          location.reload();
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            app
+              .auth()
+              .signOut()
+              .then(() => {
+                location.href = "../index.html";
+              })
+              .catch((error) => {
+                location.reload();
+              });
+          }
         });
-    }
-  });
-});
-app.auth().onAuthStateChanged((user) => {
-  if (user == null) {
-    history.back();
-  }
-});
+      });
+      app.auth().onAuthStateChanged((user) => {
+        if (user == null) {
+          history.back();
+        }
+      });
     </script>
   </body>
 </html>
