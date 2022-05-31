@@ -170,7 +170,6 @@
               content: progress,
               timer: progress,
             });
-            console.log("upload is " + progress + " done");
           },
           function (error) {
             swal("error", "Error in Uploding picture", "error");
@@ -198,6 +197,7 @@
                       AddPortfolio.img.value = "";
                       AddPortfolio.description.value = "";
                       AddPortfolio.link.value = "";
+                      location.reload();
                     });
                   })
                   .catch((error) => {
